@@ -5,7 +5,7 @@ console.log(path.resolve(__dirname));
 module.export = {
     context: path.resolve(__dirname),
     entry: './src/index.js',
-    devtool: 'cheap-module-source-map',
+    devtool: 'source-map',
     mode: 'development',
     module:{
         rules: [
@@ -14,13 +14,15 @@ module.export = {
               use: {
                 loader: 'babel-loader',
                 options:{
-                  presets: ["@babel/preset-env", "@babel/preset-react"],
+                  presets: ["@babel/core", "@babel/preset-env", "@babel/preset-react"],
                   plugins: [
                     '@babel/plugin-proposal-object-rest-spread',
                     '@babel/plugin-transform-runtime',
                     '@babel/plugin-proposal-class-properties',
                   ],
-                }
+                  sourceMap: true,
+                  cacheDirectory: true,
+                },
               }
             }
         ]
@@ -29,5 +31,7 @@ module.export = {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
       filename: 'build.js'
-    }
+    },
+    // 省略后缀
+    extensions: ['.js', '.jsx', '.less', 'css'],
 }
