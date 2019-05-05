@@ -8,7 +8,7 @@ class ClockComp extends React.Component {
     };
     
     render() {
-        return null;    
+        return <div>时钟</div>
     };
     
 }

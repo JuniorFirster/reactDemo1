@@ -4,7 +4,7 @@ const glob = require('glob');
 console.log(path.resolve(__dirname));
 module.export = {
     context: path.resolve(__dirname),
-    entry: './src/index.js',
+    entry: './js/index.js',
     devtool: 'source-map',
     mode: 'development',
     module:{

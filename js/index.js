@@ -4,4 +4,4 @@ import ClockComp from './clockComp.js';
 
 const rootDom = document.getElementById('root-dom');
 
-// ReactDOM.render(<ClockComp />, rootDom)
+ReactDOM.render(<ClockComp />, rootDom)
