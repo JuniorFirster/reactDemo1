@@ -34,6 +34,9 @@ module.exports = {
       publicPath: '/',
       filename: 'build.js'
     },
-    // 省略后缀
-    // extensions: ['.js', '.jsx', '.less', 'css'],
+    resolve: {
+      // 省略后缀
+      extensions: ['.js', '.jsx', '.less', 'css'],
+    }
+    
 }
