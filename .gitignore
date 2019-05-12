@@ -1,3 +1,5 @@
 /node_modules
 /dist
 /.gitignore
+/yarn.lock
+/yarn*.log
