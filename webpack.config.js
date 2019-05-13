@@ -38,7 +38,7 @@ module.exports = {
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: path.join(__dirname, 'index.html'),
-        chunks: ["index"], // entry中的app入口才会被打包
+        // chunks: ["index"], // entry中的app入口才会被打包
         // minify: {
         //   // 压缩选项
         //   collapseWhitespace: true
