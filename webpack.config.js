@@ -7,6 +7,7 @@ module.exports = {
     context: path.resolve(__dirname),
     entry: {
       'js/index': './js/index.js',
+      'js/clockComp': './js/clockComp.jsx',
     },
     devtool: 'source-map',
     mode: 'development',
@@ -25,10 +26,10 @@ module.exports = {
     },
     optimization: {
       minimize: true,
-      runtimeChunk: 'single',
-      splitChunks: {
-        chunks: 'all'
-      }
+      // runtimeChunk: 'single',
+      // splitChunks: {
+      //   chunks: 'all'
+      // }
     },
     plugins: [
       new CopyWebpackPlugin([{
@@ -38,7 +39,8 @@ module.exports = {
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: path.join(__dirname, 'index.html'),
-        // chunks: ["index"], // entry中的app入口才会被打包
+        chunks: ["js/index"], // entry中的app入口才会被打包
+        inject: true,
         // minify: {
         //   // 压缩选项
         //   collapseWhitespace: true
