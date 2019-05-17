@@ -52,7 +52,7 @@ module.exports = {
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: path.join(__dirname, 'index.html'),
-        chunks: ["js/index"], // entry中的app入口才会被打包
+        chunks: ["src/index"], // entry中的app入口才会被打包
         inject: true,
         // minify: {
         //   // 压缩选项
