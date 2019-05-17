@@ -3,12 +3,25 @@ const path = require('path');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const resolveEntries = () => {
+  const entries = {};
+  glob
+    .sync("js/*.js")
+    .forEach(filePath => {
+      const key = filePath
+      .split('.')
+      .slice(0, -1)
+      .join('.');
+      console.log(filePath,key);
+      entries[key] = path.resolve(__dirname, filePath);
+    });
+  console.log(entries);
+  return entries;
+}
+
 module.exports = {
     context: path.resolve(__dirname),
-    entry: {
-      'js/index': './js/index.js',
-      'js/clockComp': './js/clockComp.jsx',
-    },
+    entry: () => resolveEntries(),
     devtool: 'source-map',
     mode: 'development',
     module:{
