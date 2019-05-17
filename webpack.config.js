@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const resolveEntries = () => {
   const entries = {};
   glob
-    .sync("js/*.js")
+    .sync("src/*.js")
     .forEach(filePath => {
       const key = filePath
       .split('.')
