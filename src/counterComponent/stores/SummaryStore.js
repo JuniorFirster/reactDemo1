@@ -25,7 +25,9 @@ const SummaryStore = Object.assign({}, EventEmitter.prototype, {
 
 SummaryStore.dispatcherToken = AddDispatcher.register( action => {
     if (action.type === ActionTypes.INCREMENT || action.type === ActionTypes.DECREMENT ) {
-        AppDispatcher.waitFor(CounterStore.dispatcherToken);
-        SummaryStore.emitChange()
+        AddDispatcher.waitFor([CounterStore.dispatcherToken]);
+        SummaryStore.emitChange();
     }
 });
+
+export default SummaryStore;
