@@ -35,6 +35,14 @@ module.exports = {
             test: /\.html$/,
             loader: "html-loader",
           },
+          {
+            test: /\.(css|less|scss|sass)$/,
+            use: [
+              {loader: 'style-loader'},
+              {loader: 'css-loader'},
+              {loader: 'less-loader'},
+            ],
+          }
         ]
     },
     optimization: {
@@ -54,13 +62,10 @@ module.exports = {
         template: path.join(__dirname, 'index.html'),
         chunks: ["js/index"], // entry中的app入口才会被打包
         inject: true,
-        // minify: {
-        //   // 压缩选项
-        //   collapseWhitespace: true
-        // },
-        // // files: {
-        // //   js: ''
-        // // },
+        minify: {
+          // 压缩选项
+          collapseWhitespace: true
+        },
       }),
     ],
     output: {
