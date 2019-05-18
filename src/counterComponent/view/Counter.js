@@ -1,3 +1,4 @@
+import './style/Counter.less';
 import React, { Component, PropTypes } from 'react';
 import * as Action from '../action';
 import CounterStore from '../stores/CounterStore';
@@ -34,13 +35,13 @@ class Counter extends Component {
 
     render() {
         return (
-            <div>
-                <div>{this.props.caption}</div>
+            <div className="counter-contain">
+                <div className="counter-name">{this.props.caption}</div>
                 <div>
                     <button type="button" onClick={this.btnOnIncrement}>+</button>
                     <button type="button" onClick={this.btnOnDecrement}>-</button>
                 </div>
-                <div>total: {this.state.count}</div>
+                <div className="counter-total">total: {this.state.count}</div>
             </div>
         )
     }
