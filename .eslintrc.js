@@ -21,8 +21,9 @@ module.exports = {
     "rules": {
         "no-console": "warn",
         "react/jsx-uses-vars": "error",
+        "react/prop-types": 0,
         "no-var": 2,
-        "semi-style": "error"
+        "semi-style": "error",
     },
     "parser": "babel-eslint",
     "settings": {

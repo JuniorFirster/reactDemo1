@@ -92,6 +92,6 @@ module.exports = {
     resolve: {
       // 省略后缀
       extensions: ['.js', '.jsx', '.scss', 'css'],
-    }
-    
+    },
+    stats: 'minimal',
 }
