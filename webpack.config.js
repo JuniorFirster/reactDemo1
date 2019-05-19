@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+/* global require */
 const path = require('path');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,20 +6,31 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const resolveEntries = () => {
   const entries = {};
   glob
-    .sync("js/*.js")
+    .sync("src/**/*.js")
     .forEach(filePath => {
       const key = filePath
       .split('.')
       .slice(0, -1)
       .join('.');
-      console.log(filePath,key);
+      // eslint-disable-next-line
       entries[key] = path.resolve(__dirname, filePath);
     });
-  console.log(entries);
-  return entries;
+  glob
+    .sync("src/**/*.jsx")
+    .forEach(filePath => {
+      const key = filePath
+      .split('.')
+      .slice(0, -1)
+      .join('.');
+      // eslint-disable-next-line
+      entries[key] = path.resolve(__dirname, filePath);
+    });
+  return entries
 }
 
+// eslint-disable-next-line
 module.exports = {
+    // eslint-disable-next-line
     context: path.resolve(__dirname),
     entry: () => resolveEntries(),
     devtool: 'source-map',
@@ -40,7 +51,7 @@ module.exports = {
             use: [
               {loader: 'style-loader'},
               {loader: 'css-loader'},
-              {loader: 'less-loader'},
+              {loader: 'sass-loader'},
             ],
           }
         ]
@@ -54,13 +65,15 @@ module.exports = {
     },
     plugins: [
       new CopyWebpackPlugin([{
+        // eslint-disable-next-line
         from: path.join(__dirname, 'favicon.ico'),
         to: ''
       }]),
       new HtmlWebpackPlugin({
         filename: "index.html",
+        // eslint-disable-next-line
         template: path.join(__dirname, 'index.html'),
-        chunks: ["js/index"], // entry中的app入口才会被打包
+        chunks: ["src/js/index"], // entry中的app入口才会被打包
         inject: true,
         minify: {
           // 压缩选项
@@ -69,6 +82,7 @@ module.exports = {
       }),
     ],
     output: {
+      // eslint-disable-next-line
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
       chunkFilename: '[name]-[chunkhash].js',
@@ -77,7 +91,7 @@ module.exports = {
     },
     resolve: {
       // 省略后缀
-      extensions: ['.js', '.jsx', '.less', 'css'],
+      extensions: ['.js', '.jsx', '.scss', 'css'],
     }
     
 }

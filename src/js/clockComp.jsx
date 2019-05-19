@@ -1,15 +1,13 @@
 import React from 'react';
+import '../style/clockComp';
 
 class ClockComp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // start: true,
             now: Date.now(),
-            // time: new Date(this.state.now).toLocaleTimeString(),
-            // date: new Date(this.state.now).toLocaleDateString(),
         }
-    };
+    }
     
     componentDidMount(){
         this.timeId = setInterval(() => {
@@ -34,14 +32,14 @@ class ClockComp extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="contain">
                 <div className="clock">
                     {new Date(this.state.now).toLocaleDateString()} {new Date(this.state.now).toLocaleTimeString()}
                 </div>
                 <button onClick={this.pauseOrStart} type="button" className="btn">停止/开始</button>
             </div>
         )
-    };
+    }
     
 }
 
