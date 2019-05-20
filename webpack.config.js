@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* global require */
 const path = require('path');
 const glob = require('glob');
@@ -28,7 +29,6 @@ const resolveEntries = () => {
   return entries
 }
 
-// eslint-disable-next-line
 module.exports = {
     // eslint-disable-next-line
     context: path.resolve(__dirname),

@@ -5,7 +5,7 @@ export default (state, action) => {
     switch (type) {
         case actionTypes.INCREMENT:
             return { ...state, [counterCaption]: state[counterCaption] };
-        case actionTypes.INCREMENT:
+        case actionTypes.DECREMENT:
             return { ...state, [counterCaption]: state[counterCaption] };
         default: 
             return state;
