@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import store from './store';
-import Provider from './provider';
-import CounterPanel from './view/CounterPanel';
+import App from './App';
+
 const rootDom = document.getElementById('root-dom');
 
-ReactDOM.render(
-<Provider store={store}>
-  <CounterPanel/>
-</Provider>,
-rootDom
-);
+ReactDOM.render(<App store={store}/>, rootDom);

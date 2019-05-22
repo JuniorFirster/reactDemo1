@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import ProviderBox from '../ProviderBox';
+import '../../style/summary';
+
+const getTotal = context => {
+  const storeObj = context.store.getState();
+  const totalArray = Object.values(storeObj);
+  const total = totalArray.reduce((total, item) => (total + item), 0);
+  return total;
+}
 
 class Summary extends Component {
   constructor(props) {
@@ -7,7 +16,7 @@ class Summary extends Component {
 
   render() {
     return (
-      <div>total {this.props.total}</div>
+      <div className="summary">summary: {this.props.total}</div>
     );
   }
 }
@@ -15,13 +24,13 @@ class Summary extends Component {
 class SummaryContain extends Component  {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      total: getTotal(this.context),
+    }
   }
 
   onUpdate = () => {
-    const storeObj = this.context.getState();
-    const totalArray = Object.values(storeObj);
-    const total = totalArray.reduce((total, item) => (total + item), 0);
-    this.setState({ total });
+    this.setState({ total: getTotal(this.context) });
   }
 
   componentDidMount() {
@@ -36,5 +45,7 @@ class SummaryContain extends Component  {
     return <Summary total={this.state.total}/>
   }
 }
+
+SummaryContain.contextType = ProviderBox;
 
 export default SummaryContain;

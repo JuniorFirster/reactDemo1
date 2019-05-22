@@ -1,0 +1,11 @@
+.counter-contain {
+    display: flex;
+    flex-flow: row nowrap;
+    .caption-name {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    .counter-total {
+      margin-left: 10px;
+    }
+}

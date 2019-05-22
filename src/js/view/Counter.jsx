@@ -1,5 +1,7 @@
+import '../../style/counter'
 import React, { Component } from 'react';
 import * as action from '../action';
+import ProviderBox from '../ProviderBox';
 class Counter extends Component {
   constructor(props) {
     super(props);
@@ -8,7 +10,10 @@ class Counter extends Component {
   render() {
     return (
       <div className="counter-contain">
-        <div className=""></div>
+        <div className="caption-name">{this.props.caption}</div>
+        <button onClick={this.props.onDecrement} className="counter-decrement">-</button>
+        <button onClick={this.props.onIncrement} className="counter-increment">+</button>
+        <div className="counter-total">total: {this.props.value}</div>
       </div>
     )
   }
@@ -59,5 +64,7 @@ class CounterContain extends  Component {
     
   }
 }
+
+CounterContain.contextType = ProviderBox;
 
 export default CounterContain;
