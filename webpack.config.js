@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const resolveEntries = () => {
   const entries = {};
   glob
-    .sync("src/**/*.js")
+    .sync("src/*.js")
     .forEach(filePath => {
       const key = filePath
       .split('.')
@@ -16,7 +16,7 @@ const resolveEntries = () => {
       entries[key] = path.resolve(__dirname, filePath);
     });
   glob
-    .sync("src/**/*.jsx")
+    .sync("src/*.jsx")
     .forEach(filePath => {
       const key = filePath
       .split('.')
@@ -57,7 +57,7 @@ module.exports = {
         ]
     },
     optimization: {
-      minimize: true,
+      // minimize: true,
       // runtimeChunk: 'single',
       // splitChunks: {
       //   chunks: 'all'
@@ -73,7 +73,7 @@ module.exports = {
         filename: "index.html",
         // eslint-disable-next-line
         template: path.join(__dirname, 'index.html'),
-        chunks: ["src/js/index"], // entry中的app入口才会被打包
+        chunks: ["src/index"], // entry中的app入口才会被打包
         inject: true,
         minify: {
           // 压缩选项
@@ -92,6 +92,10 @@ module.exports = {
     resolve: {
       // 省略后缀
       extensions: ['.js', '.jsx', '.scss', 'css'],
-    }
-    
+      //定位绝对路径
+      alias: {
+        '@config': path.resolve(__dirname, 'src/config'),
+      },
+    },
+    stats: 'minimal',
 }
