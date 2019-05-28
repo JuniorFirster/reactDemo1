@@ -16,4 +16,12 @@ class AddTodo extends React.Component {
   }
 }
 
-export default AddTodo;
+const mapDispatchToProps = (dispatch,) => {
+  return {
+    addTodoFn: text => {
+      dispatch(todoAdd(text));
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddTodo);
