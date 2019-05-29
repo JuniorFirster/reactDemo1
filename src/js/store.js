@@ -1,5 +1,7 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './reducer';
+// import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
+import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 
 const initValues = {
     first: 23,
@@ -7,6 +9,14 @@ const initValues = {
     third: 31,
 }
 
-const store = createStore(reducer, initValues);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const storeEnhancers =composeEnhancers(
+    applyMiddleware(
+        reduxImmutableStateInvariant()
+    )
+);
+
+const store = createStore(reducer, initValues, storeEnhancers);
 
 export default store;
