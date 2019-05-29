@@ -1,15 +1,34 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
-import { todoAdd } from '../action';
+import * as action from '../action';
 
 class AddTodo extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  getRefInput = element => {
+    this.input = element;
+  }
+
+  addSubmit = (ev) => {
+    ev.preventDefault();
+    const input = this.input;
+    if (!input.value.trim()) return;
+    const text = input.value;
+    this.props.addTodoFn(text);
+    input.value = '';
+  }
+
   render() {
     return (
-      <form className="addtodo">
-        <input type="text" className="addtodo-input"/>
+      <form onSubmit={this.addSubmit} className="addtodo">
+        <input
+          type="text"
+          ref={this.getRefInput}
+          className="addtodo-input"
+        />
         <button className="addtodo-submit">添加</button>
       </form>
     )
@@ -19,7 +38,7 @@ class AddTodo extends React.Component {
 const mapDispatchToProps = (dispatch,) => {
   return {
     addTodoFn: text => {
-      dispatch(todoAdd(text));
+      dispatch(action.todoAdd(text));
     }
   }
 }
