@@ -7,10 +7,21 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import todoReducer from './todo/reducer';
 import filterReducer from './filter/recuder';
+import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
+// import Perf from 'react-addons-perf';
+// const win = window;
+// win.Perf = Perf;
 
 const reducer = combineReducers({
   todo: todoReducer,
   filter: filterReducer,
-})
+});
 
-export default createStore(reducer,{});
+const middlewares = [reduxImmutableStateInvariant()];
+
+const storeEnhancer = compose(
+  applyMiddleware(...middlewares),
+  // (win && win.devToolsExtension) ? win.devToolsExtension() : (f) => f,
+);
+
+export default createStore(reducer,{}, storeEnhancer);
