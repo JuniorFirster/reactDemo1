@@ -5,10 +5,8 @@
  * compose 目前来看，用于添加store enhancer(存储增强剂)的方法
  */
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-// import { createStore, applyMiddleware, compose } from 'redux';
 import todoReducer from './todo/reducer';
 import filterReducer from './filter/recuder';
-// import reduxImmutableStateInvariant from 'redux-immutable-state-invariant'
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 
 const reducer = combineReducers({
@@ -16,8 +14,15 @@ const reducer = combineReducers({
   filter: filterReducer,
 });
 
-// const middlewares = [reduxImmutableStateInvariant()];
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const storeEnhancer = compose(applyMiddleware(reduxImmutableStateInvariant()));
+const middlewares = [reduxImmutableStateInvariant()];
+
+// eslint-disable-next-line no-undef
+if (process.env.NODE_ENV !== 'production') {
+  middlewares.push(reduxImmutableStateInvariant())
+}
+
+const storeEnhancer = composeEnhancers(applyMiddleware(...middlewares));
 
 export default createStore(reducer,{}, storeEnhancer);
