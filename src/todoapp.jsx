@@ -1,3 +1,4 @@
+import './common.scss';
 import React from 'react';
 import Todo from './todo/view/todo';
 import Filter from './filter/view/filter';

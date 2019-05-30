@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import '../style/style.scss';
 import React from 'react';
 import { connect } from 'react-redux';
 import TodoItem from './todoItem';
