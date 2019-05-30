@@ -10,13 +10,13 @@ import filterReducer from './filter/recuder';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 
 const reducer = combineReducers({
-  todo: todoReducer,
+  todos: todoReducer,
   filter: filterReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const middlewares = [reduxImmutableStateInvariant()];
+const middlewares = [];
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV !== 'production') {

@@ -22,7 +22,8 @@ module.exports = {
         "no-console": "warn",
         "react/jsx-uses-vars": "error",
         "no-var": 2,
-        "semi-style": "error"
+        "semi-style": "error",
+        "react/jsx-key": 0,
     },
     "parser": "babel-eslint",
     "settings": {

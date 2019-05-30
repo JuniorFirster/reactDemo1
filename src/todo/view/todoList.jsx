@@ -4,12 +4,21 @@ import { connect } from 'react-redux';
 import TodoItem from './todoItem';
 import { todoToggle, todoRemove } from '../action';
 import { filterDict } from '@config/dict';
-import { throwError } from 'rxjs';
 
-const TodoList = ({ toggleFn }) => {
+const TodoList = ({ toggleFn, removeFn, todos}) => {
   return(
     <ul className="todo-list">
-      <TodoItem toggle={toggleFn} />
+      {
+        todos.map(item => (
+          <TodoItem
+            completed={item.completed}
+            onToggle={() => toggleFn(item.id)}
+            onRemove={() => removeFn(item.id)}
+            textValue={item.text}
+            key={item.id}
+          />
+        ))
+      }
     </ul>
   )
 }

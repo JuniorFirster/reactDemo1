@@ -20,7 +20,7 @@ class TodoItem extends React.Component {
           checked={this.props.completed}
           readOnly
         />
-        <span className="todo-text">{this.props.text}</span>
+        <span className="todo-text">{this.props.textValue}</span>
         <button className="todo-remove" onClick={this.props.onRemove}>X</button>
       </li>
     )
