@@ -5,10 +5,14 @@ import { connect } from 'react-redux';
 import { setFilter } from '../action';
 
 
-const FilterTo = ({active, children, onClick}) => {
-  return (
-    <b>{children}</b>
-  )
+const FilterTo = ({active, children, activeFilter}) => {
+  if (active) {
+    return (<b>{children}</b>)
+  } else {
+    return (
+      <a href="#" onClick={activeFilter}>{children}</a>
+    )
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -19,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick: () => {
+    activeFilter: () => {
       dispatch(setFilter(ownProps.filter))
     }
   }
