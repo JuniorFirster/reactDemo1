@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { connect } from 'react-redux';
 
 class TodoItem extends React.Component {
   constructor(props){
@@ -27,4 +28,4 @@ class TodoItem extends React.Component {
   }
 }
 
-export default TodoItem;
+export default connect()(TodoItem);
